@@ -1,0 +1,21 @@
+DESCRIPTION="A Constant DataBase manager"
+HOMEPAGE="http://www.corpit.ru/mjt/tinycdb.html"
+SRC_URI="http://www.corpit.ru/mjt/tinycdb/${PN}_${PV}.tar.gz"
+
+src_compile() {
+	lndirs
+	cd ${B}
+	cygmake all sharedlib CFLAGS="${CFLAGS}"
+}
+
+src_install() {
+	cd ${B}
+	dobin *.dll *.exe
+	dolib *.a
+	doman cdb.[135]
+
+	insinto /usr/include
+	doins cdb.h
+
+
+}
